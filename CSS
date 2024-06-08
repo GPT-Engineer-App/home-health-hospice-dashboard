@@ -1,0 +1,81 @@
+"use client";
+import { useState } from "react";
+
+export default function Home() {
+  const [patientData, setPatientData] = useState({
+    name: "John Doe",
+    age: 72,
+    vitals: {
+      temperature: 98.6,
+      bloodPressure: "120/80",
+      respiratoryRate: 16,
+      pulseRate: 78,
+    },
+    metrics: [
+      { date: "2023-05-01", weight: 180, painLevel: 3 },
+      { date: "2023-04-28", weight: 182, painLevel: 2 },
+      { date: "2023-04-25", weight: 185, painLevel: 4 },
+      { date: "2023-04-22", weight: 187, painLevel: 5 },
+    ],
+  });
+
+  return (
+    <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+      <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div className="px-4 py-5 sm:px-6">
+          <h3 className="text-lg leading-6 font-medium text-gray-900">Patient Information</h3>
+          <p className="mt-1 max-w-2xl text-sm text-gray-500">Personal details and current vitals.</p>
+        </div>
+        <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+          <dl className="sm:divide-y sm:divide-gray-200">
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Full name</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{patientData.name}</dd>
+            </div>
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Age</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{patientData.age}</dd>
+            </div>
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Temperature</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{patientData.vitals.temperature}°F</dd>
+            </div>
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Blood Pressure</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{patientData.vitals.bloodPressure} mmHg</dd>
+            </div>
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Respiratory Rate</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{patientData.vitals.respiratoryRate} breaths/min</dd>
+            </div>
+            <div className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+              <dt className="text-sm font-medium text-gray-500">Pulse Rate</dt>
+              <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">{patientData.vitals.pulseRate} bpm</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+
+      <div className="mt-8">
+        <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+          <div className="px-4 py-5 sm:px-6">
+            <h3 className="text-lg leading-6 font-medium text-gray-900">Long-term Metrics</h3>
+            <p className="mt-1 max-w-2xl text-sm text-gray-500">Weight and pain level over time.</p>
+          </div>
+          <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
+            <dl className="sm:divide-y sm:divide-gray-200">
+              {patientData.metrics.map((metric, index) => (
+                <div key={index} className="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt className="text-sm font-medium text-gray-500">{metric.date}</dt>
+                  <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    Weight: {metric.weight} lbs, Pain Level: {metric.painLevel}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
